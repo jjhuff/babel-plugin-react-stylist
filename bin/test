@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+tests=`find ./tests -type f -name '*-test.js' -not -path './node_modules/*'`
+
+ln -s `pwd` node_modules/babel-plugin-react-stylist
+
+./node_modules/babel-cli/bin/babel-node.js $tests
+
+rm node_modules/babel-plugin-react-stylist
