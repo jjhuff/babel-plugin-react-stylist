@@ -22,6 +22,20 @@ export default function ({ types: t }) {
             value = value.expression;
         }
 
+        if (t.isArrayExpression(value)) {
+          // Merge arrays before prefixing
+          var helper = this.addHelper("extends");
+
+          var args = value.elements;
+          // If the first item isn't an object, add an
+          // empty object to the front of the args
+          if (!t.isObjectExpression(args[0])) {
+            args.unshift(t.objectExpression([]));
+          }
+
+          value = t.callExpression(helper, args);
+        }
+
         const wrapper = this.addImport("react-prefixer", "default");
 
         path.replaceWith(

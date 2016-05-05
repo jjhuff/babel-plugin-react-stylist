@@ -36,6 +36,10 @@ const CODE = [
   const styleB={width: 100};
   <div style={[styleA, styleB]} />`,
 
+  // array w/ objects
+  `const styleA={alignItems: "center", display: "flex"};
+  <div style={[{width: 100}, styleA]} />`,
+
   // _default in use
   `const _default=1;
   <div style={{alignItems: "center", display: "flex", width: 100}} />`,
